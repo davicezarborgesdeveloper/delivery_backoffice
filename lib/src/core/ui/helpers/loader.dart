@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 mixin Loader<T extends StatefulWidget> on State<T> {
@@ -18,9 +19,10 @@ mixin Loader<T extends StatefulWidget> on State<T> {
   }
 
   void hideLoader() {
-    if(isOpen){
+    if (isOpen) {
       isOpen = false;
-      Navigator.of(context).pop();
+      Navigator.of(context, rootNavigator: true).pop();
+      // Modular.to.pop();
     }
   }
 
