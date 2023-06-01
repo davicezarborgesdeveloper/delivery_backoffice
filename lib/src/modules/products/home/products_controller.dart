@@ -7,12 +7,7 @@ import '../../../models/product_model.dart';
 import '../../../repositories/product/product_repository.dart';
 part 'products_controller.g.dart';
 
-enum ProductStateStatus {
-  initial,
-  loading,
-  loaded,
-  error,
-}
+enum ProductStateStatus { initial, loading, loaded, error, addOrUpdateProduct }
 
 class ProductsController = ProductsControllerBase with _$ProductsController;
 
@@ -29,6 +24,9 @@ abstract class ProductsControllerBase with Store {
 
   @readonly
   String? _filterName;
+
+  @readonly
+  ProductModel? _productSelected;
 
   @action
   Future<void> filterByName(String name) async {
@@ -47,5 +45,21 @@ abstract class ProductsControllerBase with Store {
       log('Erro ao buscar produtos', error: e, stackTrace: s);
       _status = ProductStateStatus.error;
     }
+  }
+
+  @action
+  Future<void> addProduct() async {
+    _status = ProductStateStatus.loaded;
+    await Future.delayed(Duration.zero);
+    _productSelected = null;
+    _status = ProductStateStatus.addOrUpdateProduct;
+  }
+
+  @action
+  Future<void> editProduct(ProductModel productModel) async {
+    _status = ProductStateStatus.loaded;
+    await Future.delayed(Duration.zero);
+    _productSelected = productModel;
+    _status = ProductStateStatus.addOrUpdateProduct;
   }
 }

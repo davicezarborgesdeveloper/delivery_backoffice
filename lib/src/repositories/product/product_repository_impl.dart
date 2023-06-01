@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../../core/exceptions/repository_exception.dart';
 import '../../core/rest_client/custom_dio.dart';
@@ -20,7 +19,7 @@ class ProductRepositoryImpl implements ProductRepository {
     try {
       await _dio.auth().put(
         '/products/$id',
-        data: {'enable': false},
+        data: {'enabled': false},
       );
     } on DioError catch (e, s) {
       log('Erro ao deletar produto', error: e, stackTrace: s);
