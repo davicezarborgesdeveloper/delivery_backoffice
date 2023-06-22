@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                           controller: passwordEC,
                           onFieldSubmitted: (_) => _formSubmit(),
                           obscureText: true,
-                          decoration: InputDecoration(labelText: 'Senha'),
+                          decoration: const InputDecoration(labelText: 'Senha'),
                           validator:
                               Validatorless.required('Password Obrigatório'),
                         ),
@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> with Loader, Messages {
                           height: 50,
                           child: ElevatedButton(
                             onPressed: _formSubmit,
-                            child: Text('Entrar'),
+                            child: const Text('Entrar'),
                           ),
                         ),
                       ],

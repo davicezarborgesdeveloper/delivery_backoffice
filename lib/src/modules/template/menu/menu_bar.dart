@@ -33,9 +33,11 @@ class _MenuBarState extends State<MenuBar> {
                   colapsed = !colapsed;
                 });
               },
-              icon: Icon(colapsed
-                  ? Icons.keyboard_double_arrow_right
-                  : Icons.keyboard_double_arrow_left),
+              icon: Icon(
+                colapsed
+                    ? Icons.keyboard_double_arrow_right
+                    : Icons.keyboard_double_arrow_left,
+              ),
             ),
           ),
           const SizedBox(

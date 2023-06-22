@@ -23,10 +23,14 @@ class OrderRepositoryImpl implements OrderRepository {
         },
       );
     } on DioError catch (e, s) {
-      log('Erro ao alterar status do pediro para ${status.acronym}',
-          error: e, stackTrace: s);
+      log(
+        'Erro ao alterar status do pediro para ${status.acronym}',
+        error: e,
+        stackTrace: s,
+      );
       throw RepositoryException(
-          message: 'Erro ao alterar status do pedido para ${status.acronym}');
+        message: 'Erro ao alterar status do pedido para ${status.acronym}',
+      );
     }
   }
 

@@ -71,23 +71,24 @@ class _PaymentTypePageState extends State<PaymentTypePage>
 
   void showAddOrUpdatePayment() {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Material(
-            color: Colors.black26,
-            child: Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              backgroundColor: Colors.white,
-              elevation: 10,
-              child: PaymentTypeFormModal(
-                model: controller.paymentTypeSelected,
-                controller: controller,
-              ),
+      context: context,
+      builder: (BuildContext context) {
+        return Material(
+          color: Colors.black26,
+          child: Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
-          );
-        });
+            backgroundColor: Colors.white,
+            elevation: 10,
+            child: PaymentTypeFormModal(
+              model: controller.paymentTypeSelected,
+              controller: controller,
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -102,24 +103,26 @@ class _PaymentTypePageState extends State<PaymentTypePage>
             height: 50,
           ),
           Expanded(
-            child: Observer(builder: (_) {
-              return GridView.builder(
-                itemCount: controller.paymentTypes.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  mainAxisExtent: 120,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 10,
-                  maxCrossAxisExtent: 680,
-                ),
-                itemBuilder: (_, index) {
-                  final paymentTypeModel = controller.paymentTypes[index];
-                  return PaymentTypeItem(
-                    payment: paymentTypeModel,
-                    controller: controller,
-                  );
-                },
-              );
-            }),
+            child: Observer(
+              builder: (_) {
+                return GridView.builder(
+                  itemCount: controller.paymentTypes.length,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    mainAxisExtent: 120,
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 10,
+                    maxCrossAxisExtent: 680,
+                  ),
+                  itemBuilder: (_, index) {
+                    final paymentTypeModel = controller.paymentTypes[index];
+                    return PaymentTypeItem(
+                      payment: paymentTypeModel,
+                      controller: controller,
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ],
       ),

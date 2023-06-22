@@ -25,9 +25,10 @@ class BaseLayout extends StatelessWidget {
               ),
               alignment: Alignment.centerLeft,
               child: Container(
-                  width: shortestSide * .13,
-                  margin: const EdgeInsets.only(left: 60),
-                  child: Image.asset('assets/images/logo.png')),
+                width: shortestSide * .13,
+                margin: const EdgeInsets.only(left: 60),
+                child: Image.asset('assets/images/logo.png'),
+              ),
             ),
             Positioned.fill(
               top: shortestSide * .14,
@@ -41,13 +42,14 @@ class BaseLayout extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    menu.MenuBar(),
+                    const menu.MenuBar(),
                     Expanded(
-                        child: Container(
-                      padding: const EdgeInsets.only(left: 20),
-                      color: Colors.grey[50]!,
-                      child: body,
-                    )),
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20),
+                        color: Colors.grey[50]!,
+                        child: body,
+                      ),
+                    ),
                   ],
                 ),
               ),

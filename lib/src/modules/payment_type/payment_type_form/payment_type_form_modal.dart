@@ -10,8 +10,11 @@ class PaymentTypeFormModal extends StatefulWidget {
   final PaymentTypeController controller;
   final PaymentTypeModel? model;
 
-  const PaymentTypeFormModal(
-      {super.key, required this.model, required this.controller});
+  const PaymentTypeFormModal({
+    super.key,
+    required this.model,
+    required this.controller,
+  });
 
   @override
   State<PaymentTypeFormModal> createState() => _PaymentTypeFormModalState();
@@ -27,7 +30,7 @@ class _PaymentTypeFormModalState extends State<PaymentTypeFormModal> {
 
   @override
   void initState() {
-    var paymentModel = widget.model;
+    final paymentModel = widget.model;
     if (paymentModel != null) {
       nameEC.text = paymentModel.name;
       acronymEC.text = paymentModel.acronym;
@@ -52,83 +55,85 @@ class _PaymentTypeFormModalState extends State<PaymentTypeFormModal> {
         padding: const EdgeInsets.all(30),
         child: Form(
           key: formKey,
-          child: Column(children: [
-            Stack(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '${widget.model == null ? 'Adicionar' : 'Editar'} forma de pagamento',
-                    textAlign: TextAlign.center,
-                    style: context.textStyles.textTitle,
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      '${widget.model == null ? 'Adicionar' : 'Editar'} forma de pagamento',
+                      textAlign: TextAlign.center,
+                      style: context.textStyles.textTitle,
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: () => _closeModal(),
-                    child: const Icon(Icons.close),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                      onTap: () => _closeModal(),
+                      child: const Icon(Icons.close),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: nameEC,
+                validator: Validatorless.required('Nome obrigatório'),
+                decoration: const InputDecoration(label: Text('Nome')),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: acronymEC,
+                validator: Validatorless.required('Sigla obrigatório'),
+                decoration: const InputDecoration(label: Text('Sigla')),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Ativo:',
+                    style: context.textStyles.textRegular,
                   ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: nameEC,
-              validator: Validatorless.required('Nome obrigatório'),
-              decoration: const InputDecoration(label: Text('Nome')),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: acronymEC,
-              validator: Validatorless.required('Sigla obrigatório'),
-              decoration: const InputDecoration(label: Text('Sigla')),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                Text(
-                  'Ativo:',
-                  style: context.textStyles.textRegular,
-                ),
-                Switch(
+                  Switch(
                     value: enabled,
                     onChanged: (value) {
                       setState(() {
                         enabled = value;
                       });
-                    })
-              ],
-            ),
-            const Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  height: 60,
-                  padding: EdgeInsets.all(8),
-                  child: OutlinedButton(
-                    onPressed: _closeModal,
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Colors.red),
-                    ),
-                    child: Text(
-                      'Cancelar',
-                      style: context.textStyles.textExtraBold
-                          .copyWith(color: Colors.red),
+                    },
+                  )
+                ],
+              ),
+              const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    height: 60,
+                    padding: const EdgeInsets.all(8),
+                    child: OutlinedButton(
+                      onPressed: _closeModal,
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Colors.red),
+                      ),
+                      child: Text(
+                        'Cancelar',
+                        style: context.textStyles.textExtraBold
+                            .copyWith(color: Colors.red),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  height: 60,
-                  padding: const EdgeInsets.all(8),
-                  child: ElevatedButton.icon(
+                  Container(
+                    height: 60,
+                    padding: const EdgeInsets.all(8),
+                    child: ElevatedButton.icon(
                       onPressed: () {
                         final valid = formKey.currentState?.validate() ?? false;
                         if (valid) {
@@ -143,11 +148,13 @@ class _PaymentTypeFormModalState extends State<PaymentTypeFormModal> {
                         }
                       },
                       icon: const Icon(Icons.save),
-                      label: Text('Salvar')),
-                ),
-              ],
-            )
-          ]),
+                      label: const Text('Salvar'),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

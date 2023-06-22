@@ -37,7 +37,8 @@ class MenuButton extends StatelessWidget {
               child: IconButton(
                 onPressed: () => onPressed(menu),
                 icon: Image.asset(
-                    'assets/images/icons/${isSelected ? menu.assetIconSelected : menu.assetIcon}'),
+                  'assets/images/icons/${isSelected ? menu.assetIconSelected : menu.assetIcon}',
+                ),
               ),
             ),
           ),
@@ -60,7 +61,8 @@ class MenuButton extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                          'assets/images/icons/${isSelected ? menu.assetIconSelected : menu.assetIcon}'),
+                        'assets/images/icons/${isSelected ? menu.assetIconSelected : menu.assetIcon}',
+                      ),
                     ),
                     const SizedBox(
                       width: 10,

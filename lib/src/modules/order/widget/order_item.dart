@@ -27,30 +27,32 @@ class OrderItem extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Row(children: [
-                  Text(
-                    'Pedido ',
-                    style: textStyles.textBold,
-                  ),
-                  Text(
-                    order.id.toString(),
-                    style: textStyles.textExtraBold,
-                  ),
-                  Expanded(
-                    child: Text(
-                      order.status.name,
-                      style: textStyles.textExtraBold.copyWith(
-                        fontSize: 20,
-                        color: order.status.color,
-                      ),
-                      textAlign: TextAlign.end,
+                child: Row(
+                  children: [
+                    Text(
+                      'Pedido ',
+                      style: textStyles.textBold,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                    height: double.infinity,
-                  ),
-                ]),
+                    Text(
+                      order.id.toString(),
+                      style: textStyles.textExtraBold,
+                    ),
+                    Expanded(
+                      child: Text(
+                        order.status.name,
+                        style: textStyles.textExtraBold.copyWith(
+                          fontSize: 20,
+                          color: order.status.color,
+                        ),
+                        textAlign: TextAlign.end,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                      height: double.infinity,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

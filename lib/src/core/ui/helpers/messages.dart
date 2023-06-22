@@ -13,7 +13,7 @@ mixin Messages<T extends StatefulWidget> on State<T> {
   }
 
   void showWarning(String message) {
-     _showSnackbar(
+    _showSnackbar(
       AwesomeSnackbarContent(
         title: 'Atenção',
         message: message,
@@ -21,8 +21,9 @@ mixin Messages<T extends StatefulWidget> on State<T> {
       ),
     );
   }
+
   void showInfo(String message) {
-     _showSnackbar(
+    _showSnackbar(
       AwesomeSnackbarContent(
         title: 'Atenção',
         message: message,
@@ -30,8 +31,9 @@ mixin Messages<T extends StatefulWidget> on State<T> {
       ),
     );
   }
+
   void showSuccess(String message) {
-     _showSnackbar(
+    _showSnackbar(
       AwesomeSnackbarContent(
         title: 'Sucesso',
         message: message,
@@ -40,7 +42,7 @@ mixin Messages<T extends StatefulWidget> on State<T> {
     );
   }
 
-  _showSnackbar(AwesomeSnackbarContent content) {
+  void _showSnackbar(AwesomeSnackbarContent content) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         elevation: 0,

@@ -8,8 +8,11 @@ import '../payment_type_controller.dart';
 class PaymentTypeItem extends StatelessWidget {
   final PaymentTypeController controller;
   final PaymentTypeModel payment;
-  const PaymentTypeItem(
-      {super.key, required this.payment, required this.controller});
+  const PaymentTypeItem({
+    super.key,
+    required this.payment,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {

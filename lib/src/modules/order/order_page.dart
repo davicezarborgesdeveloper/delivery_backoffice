@@ -44,6 +44,11 @@ class _OrderPageState extends State<OrderPage> with Loader, Messages {
             hideLoader();
             showOrderDetail();
             break;
+          case OrderStateStatus.statusChanged:
+            hideLoader();
+            Navigator.of(context, rootNavigator: true).pop();
+            controller.findOrders();
+            break;
         }
       });
       controller.findOrders();
@@ -52,10 +57,14 @@ class _OrderPageState extends State<OrderPage> with Loader, Messages {
 
   void showOrderDetail() {
     showDialog(
-        context: context,
-        builder: (_) {
-          return OrderDetailModal();
-        });
+      context: context,
+      builder: (_) {
+        return OrderDetailModal(
+          controller: controller,
+          order: controller.orderSelected!,
+        );
+      },
+    );
   }
 
   @override
@@ -66,32 +75,36 @@ class _OrderPageState extends State<OrderPage> with Loader, Messages {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (_, constraints) {
-      return Container(
-        padding: const EdgeInsets.only(top: 40),
-        child: Column(
-          children: [
-            const OrderHeader(),
-            Expanded(
-              child: Observer(
-                builder: (_) {
-                  return GridView.builder(
-                    itemCount: controller.orders.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      mainAxisExtent: 91,
-                      maxCrossAxisExtent: 600,
-                    ),
-                    itemBuilder: ((context, index) {
-                      return OrderItem(order: controller.orders[index]);
-                    }),
-                  );
-                },
+    return LayoutBuilder(
+      builder: (_, constraints) {
+        return Container(
+          padding: const EdgeInsets.only(top: 40),
+          child: Column(
+            children: [
+              OrderHeader(
+                controller: controller,
               ),
-            ),
-          ],
-        ),
-      );
-    });
+              Expanded(
+                child: Observer(
+                  builder: (_) {
+                    return GridView.builder(
+                      itemCount: controller.orders.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        mainAxisExtent: 91,
+                        maxCrossAxisExtent: 600,
+                      ),
+                      itemBuilder: ((context, index) {
+                        return OrderItem(order: controller.orders[index]);
+                      }),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
